@@ -1,9 +1,10 @@
 name: Deployment
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Integration"]
+    types:
+      - completed
 
 jobs:
   deploy:
