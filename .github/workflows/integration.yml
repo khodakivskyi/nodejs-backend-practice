@@ -2,9 +2,13 @@ name: Integration
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "lab06-ci-cd/**"
   pull_request:
+    branches:
+      - main
     paths:
       - "lab06-ci-cd/**"
 
