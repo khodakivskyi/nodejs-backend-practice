@@ -1,0 +1,36 @@
+name: Integration
+
+on:
+  push:
+    paths:
+      - "lab06-ci-cd/**"
+  pull_request:
+    paths:
+      - "lab06-ci-cd/**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: lab06-ci-cd
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          cache-dependency-path: lab06-ci-cd/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test:coverage
