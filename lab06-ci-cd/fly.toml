@@ -23,6 +23,7 @@ primary_region = 'fra'
     grace_period = "15s"
     method = "GET"
     path = "/health"
+    protocol = "http"
 
 [[vm]]
   memory = '1gb'

@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 import {envSchema} from "../schemas/env.schema";
 
-dotenv.config();
+if (!process.env.NODE_ENV) {
+    dotenv.config();
+}
 
 export const env = envSchema.parse(process.env);
