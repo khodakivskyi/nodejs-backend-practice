@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 describe("Player Model (unit)", () => {
     test("should validate correct player", async () => {
         const player = new PlayerModel({
+            ownerId: new mongoose.Types.ObjectId(),
             name: "Ronaldo",
             team: "Al Nassr",
             position: "Forwarder"
@@ -14,6 +15,7 @@ describe("Player Model (unit)", () => {
 
     test("should fail validation for invalid data", async () => {
         const player = new PlayerModel({
+            ownerId: new mongoose.Types.ObjectId(),
             name: "",
             team: "",
             position: "INVALID"
@@ -24,6 +26,7 @@ describe("Player Model (unit)", () => {
 
     test("should require name", async () => {
         const player = new PlayerModel({
+            ownerId: new mongoose.Types.ObjectId(),
             team: "Team",
             position: "Forwarder"
         });
@@ -33,6 +36,7 @@ describe("Player Model (unit)", () => {
 
     test("should fail when name contains numbers", async () => {
         const player = new PlayerModel({
+            ownerId: new mongoose.Types.ObjectId(),
             name: "Messi10",
             team: "Inter Miami",
             position: "Forwarder",

@@ -11,6 +11,11 @@ function hasCookie(setCookie: string[] | undefined, name: string): string {
     return found;
 }
 
+function toCookieHeader(setCookie: string[] | undefined): string {
+    const cookies = setCookie || [];
+    return cookies.map((c) => c.split(";")[0]).join("; ");
+}
+
 describe("Auth tokens", () => {
     beforeAll(async () => {
         await connectDB();
@@ -82,7 +87,7 @@ describe("Auth tokens", () => {
 
         const res = await request(app)
             .post("/auth/refresh")
-            .set("Cookie", loginCookies!);
+            .set("Cookie", toCookieHeader(loginCookies));
 
         expect(res.status).toBe(200);
         expect(res.body.access_token).toBeUndefined();
@@ -110,7 +115,7 @@ describe("Auth tokens", () => {
 
         const res = await request(app)
             .post("/auth/logout")
-            .set("Cookie", cookies!);
+            .set("Cookie", toCookieHeader(cookies));
 
         expect(res.status).toBe(204);
 
