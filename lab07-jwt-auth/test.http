@@ -1,0 +1,23 @@
+### Create player
+POST https://lab06.fly.dev/players
+Content-Type: application/json
+
+{
+  "name": "Lionel Messi",
+  "team": "Inter Miami",
+  "position": "Forwarder",
+  "number": 10
+}
+
+### Get all players
+GET https://lab06.fly.dev/players
+
+###
+
+### Get forwards only
+GET http://localhost:3000/players/forwards
+
+###
+
+### Get players with filters
+GET http://localhost:3000/players?team=Inter Miami&position=forwarder&sort=asc&page=1&limit=10
